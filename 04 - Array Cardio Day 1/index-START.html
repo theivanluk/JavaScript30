@@ -34,20 +34,41 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+
+    const filteredInventors = inventors.filter(person => person.year < 1600 && person.year >= 1500);
+    console.log(filteredInventors);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+    const mappedInventors = inventors.map(person => { return {first: person.first, last: person.last} });
+    console.log(mappedInventors);
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+
+    const sortedInventors = inventors.sort((a, b) =>
+        a.year < b.year ? -1 :
+        a.year > b.year ?  1 : 0
+    )
+    console.log(sortedInventors);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    const reducedInventors = inventors.reduce((memo, inventor) => memo + (inventor.passed - inventor.year), 0);
+    console.log(reducedInventors);
+
     // 5. Sort the inventors by years lived
+
+    const sortedInventorsYears = inventors.sort((a, b) =>
+        a.passed - a.year < b.passed - b.year ? -1 :
+        a.passed - a.year > b.passed - b.year ?  1 : 0
+    )
+    console.log(sortedInventorsYears);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -56,9 +77,19 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    const sortPeople = people.sort((a, b) =>
+      a.split(', ')[0] > b.split(', ')[0] ? 1 : -1
+    )
+    console.log(sortPeople);
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const reduceData = data.reduce((memo, datum) => {
+      memo[datum] === undefined ? memo[datum] = 1 : memo[datum] += 1;
+      return memo;
+    }, {})
+    console.log(reduceData);
 
   </script>
 </body>
